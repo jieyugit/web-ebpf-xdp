@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo</title>
+    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <link href="//unpkg.com/layui@2.9.1/dist/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<div class="pear-container">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="layui-form" style="margin: 20px;">
+
+                <!-- IPEnabled 开关 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">IP Enabled</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="ip-enabled-switch" lay-filter="ip-enabled-switch" lay-skin="switch">
+                    </div>
+                </div>
+                <!-- IP Source 开关 -->
+                <div class="layui-form-item" id="src-ip-section">
+                    <label class="layui-form-label">源 IP 地址</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="source-ip-switch" lay-filter="source-ip-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="source-ip-input" placeholder="请输入源 IP 地址" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+                <!-- IP Dest 开关 -->
+                <div class="layui-form-item" id="dst-ip-section">
+                    <label class="layui-form-label">目的 IP 地址</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="destination-ip-switch" lay-filter="destination-ip-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="destination-ip-input" placeholder="请输入目的 IP 地址" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+
+                <!-- IPv6 Source 开关-->
+                <div class="layui-form-item" id="src-ipv6-section">
+                    <label class="layui-form-label">目的 IPV6 地址</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="source-ipv6-switch" lay-filter="source-ipv6-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="source-ipv6-input" placeholder="请输入源 IPV6 地址" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+
+
+                <!-- IPv6 Dest 开关-->
+                <div class="layui-form-item" id="dst-ipv6-section">
+                    <label class="layui-form-label">目的 IPV6 地址</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="destination-ipv6-switch" lay-filter="destination-ipv6-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="destination-ipv6-input" placeholder="请输入目的 IPV6 地址" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="minttl-section">
+                    <label class="layui-form-label">最小TTL</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="minttl-switch" lay-filter="minttl-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="minttl-input" placeholder="请输入最小的TTL" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item" id="maxttl-section">
+                    <label class="layui-form-label">最大TTL</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="maxttl-switch" lay-filter="maxttl-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="maxttl-input" placeholder="请输入最大的TTL" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item" id="maxlen-section">
+                    <label class="layui-form-label">最大长度</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="maxlen-switch" lay-filter="maxlen-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="maxlen-input" placeholder="请输入最大长度" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item" id="minlen-section">
+                    <label class="layui-form-label">最大长度</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="minlen-switch" lay-filter="minlen-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="minlen-input" placeholder="请输入最小长度" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item" id="tos-section">
+                    <label class="layui-form-label">TOS</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="tos-switch" lay-filter="maxttl-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="tos-input" placeholder="请输入TOS" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">TCP Enabled</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="tcp-enabled-switch" lay-filter="tcp-enabled-switch" lay-skin="switch">
+                    </div>
+                </div>
+
+                <div class="layui-form-item" id="TCPSport-section">
+                    <label class="layui-form-label">TCPSport</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" id="TCPSport-switch" lay-filter="TCPSport-switch" lay-skin="switch">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" id="TCPSport-input" placeholder="请输入目的 TCP " autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="//unpkg.com/layui@2.9.1/dist/layui.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+
+    layui.use(['form', 'laydate', 'util'], function(){
+        var form = layui.form;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        var util = layui.util;
+
+        // 监听 IPEnabled 开关的变化
+        form.on('switch(ip-enabled-switch)', function(data) {
+            toggleIpInputs(data.elem.checked);
+        });
+
+        // 切换 SrcIP 和 DstIP等 输入框的显示与隐藏
+        function toggleIpInputs(isEnabled) {
+            var sections = ['#src-ip-section', '#dst-ip-section', '#src-ipv6-section', '#dst-ipv6-section','#minttl-section','#maxttl-section','#maxlen-section','#minlen-section','#tos-section'];
+            sections.forEach(function(section) {
+                $(section).toggle(isEnabled);
+            });
+        }
+
+        form.on('switch(tcp-enabled-switch)', function(data) {
+            toggleTCPInputs(data.elem.checked);
+        });
+
+        function toggleTCPInputs(isEnabled) {
+            var sections = ['#TCPSport-section'];
+            sections.forEach(function(section) {
+                $(section).toggle(isEnabled);
+            });
+        }
+
+
+
+        // 监听源 IP 地址开关
+        // form.on('switch(source-ip-switch)', function(data){
+        //     document.getElementById('source-ip-input').disabled = !data.elem.checked;
+        // });
+        //
+        // // 监听目的 IP 地址开关
+        // form.on('switch(destination-ip-switch)', function(data){
+        //     document.getElementById('destination-ip-input').disabled = !data.elem.checked;
+        // });
+        //
+        // form.on('switch(source-ipv6-switch)', function(data){
+        //     document.getElementById('source-ipv6-input').disabled = !data.elem.checked;
+        // });
+        //
+        // form.on('switch(destination-ipv6-switch)', function(data){
+        //     document.getElementById('destination-ipv6-input').disabled = !data.elem.checked;
+        // });
+        function handleSwitchChange(switchSelector, inputSelector) {
+            form.on('switch(' + switchSelector + ')', function(data) {
+                $(inputSelector).prop('disabled', !data.elem.checked);
+            });
+        }
+
+        // 帮助函数：设置输入框和开关
+        function setInputAndSwitch(inputId, switchId, value) {
+            var input = $('#' + inputId);
+            var switchElem = $('#' + switchId);
+            if (value) {
+                input.val(value).prop('disabled', false);
+                switchElem.prop('checked', true);
+            } else {
+                input.val('').prop('disabled', true);
+                switchElem.prop('checked', false);
+            }
+        }
+
+// 初始化开关监听
+        handleSwitchChange('source-ip-switch', '#source-ip-input');
+        handleSwitchChange('destination-ip-switch', '#destination-ip-input');
+        handleSwitchChange('source-ipv6-switch', '#source-ipv6-input');
+        handleSwitchChange('destination-ipv6-switch', '#destination-ipv6-input');
+        handleSwitchChange('minttl-switch', '#minttl-input');
+        handleSwitchChange('maxttl-switch', '#maxttl-input');
+        handleSwitchChange('maxlen-switch', '#maxlen-input');
+        handleSwitchChange('minlen-switch', '#minlen-input');
+        handleSwitchChange('tos-switch', '#tos-input');
+
+
+        handleSwitchChange('TCPSport-switch', '#TCPSport-input')
+
+        function getQueryString(name) {
+            const url_string = window.location.href; // window.location.href
+            const url = new URL(url_string);
+            return url.searchParams.get(name);
+        }
+        const id = getQueryString('id');
+        $.ajax({
+            url: 'http://localhost:5000/get_rule?id='+id,
+            type: "get",
+            success:function(data){
+                // if (data.data.IPEnabled === 1) {
+                //     $('#ip-enabled-switch').prop('checked', true);
+                //     $('#src-ip-section').show();
+                //     $('#dst-ip-section').show();
+                //
+                //     if (data.data.SrcIP) {
+                //         $('#source-ip-input').val(data.data.SrcIP);
+                //         $('#source-ip-switch').prop('checked', true);
+                //         $('#source-ip-input').prop('disabled', false);
+                //     }
+                //     if (data.data.DstIP) {
+                //         $('#destination-ip-input').val(data.data.DstIP);
+                //         $('#destination-ip-switch').prop('checked', true);
+                //         $('#destination-ip-input').prop('disabled', false);
+                //     }
+                // } else {
+                //     $('#ip-enabled-switch').prop('checked', false);
+                //     $('#src-ip-section').hide();
+                //     $('#dst-ip-section').hide();
+                // }
+                var ipEnabled = data.data.IPEnabled === 1;
+                $('#ip-enabled-switch').prop('checked', ipEnabled);
+
+                var tcpEnabled = data.data.TCPEnabled === 1;
+                $('#tcp-enabled-switch').prop('checked', tcpEnabled);
+
+                toggleIpInputs(ipEnabled);
+                toggleTCPInputs(tcpEnabled);
+
+                // 设置输入框和开关
+                setInputAndSwitch('source-ip-input', 'source-ip-switch', data.data.SrcIP);
+                setInputAndSwitch('destination-ip-input', 'destination-ip-switch', data.data.DstIP);
+                setInputAndSwitch('source-ipv6-input', 'source-ipv6-switch', data.data.SrcIP6);
+                setInputAndSwitch('destination-ipv6-input', 'destination-ipv6-switch', data.data.DstIP6);
+                setInputAndSwitch('minttl-input', 'minttl-switch', data.data.MinTTL);
+                setInputAndSwitch('maxttl-input', 'maxttl-switch', data.data.MaxTTL);
+                setInputAndSwitch('maxlen-input', 'maxlen-switch', data.data.MaxLen);
+                setInputAndSwitch('minlen-input', 'minlen-switch', data.data.MinLen);
+                setInputAndSwitch('tos-input', 'tos-switch', data.data.TOS);
+                setInputAndSwitch('TCPSport-input', 'TCPSport-switch', data.data.TCPSport);
+
+
+                form.render('checkbox');
+            }
+        });
+
+    });
+</script>
+        </div>
+    </div>
+</div>
+</body>
+</html>

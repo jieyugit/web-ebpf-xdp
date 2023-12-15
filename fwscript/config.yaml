@@ -32,9 +32,9 @@ Rules:
   author: yj
 - Action: 1
   Enabled: 0
+  ICMPCode: 12
   ICMPEnabled: 1
-  ICMPType: 8
-  IPEnabled: 1
+  ICMPType: 3
   Id: 5
   author: yj
 UpdateTime: 5
