@@ -8,7 +8,8 @@ from flask_socketio import SocketIO
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='')
+
 socketio = SocketIO(app, cors_allowed_origins='*')
 connected_sids = set()  # 存放已连接的客户端
 
@@ -44,6 +45,11 @@ def file_observer():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/testindex')
+def indexTest():
+    return render_template('indexTest.html')
+
 
 
 @socketio.on('connect')
@@ -139,7 +145,7 @@ def get_rule():
 
 
 if __name__ == '__main__':
-    watched_path = "F:/webFirewall/fwscript"
+    watched_path = "F:/webFirewall/config"
     event_handler = LogHandler()
     observer = Observer()
     observer.schedule(event_handler, path=watched_path, recursive=False)
