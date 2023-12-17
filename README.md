@@ -19,7 +19,14 @@ Updates:
 
 - Completed the corresponding backend code. 
 
-  
+
+### 2023/12/17
+
+Updates:
+
+- Optimize the project structure
+- add a **test** websocket webpage
+- add watchdog to observe the changes of the log file
 
 
 
