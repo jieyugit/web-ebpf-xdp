@@ -1,17 +1,29 @@
+import configparser
 import threading
 import time
 
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, session, redirect, url_for
 import yaml
 from flask_cors import cross_origin
 from flask_socketio import SocketIO
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-app = Flask(__name__,static_url_path='')
+app = Flask(__name__, static_url_path='')
+app.config['SECRET_KEY'] = "CSaSvOU6h1iMb15s+GsV5TuKYSbREcBZ/g1Gjh9nCec="
 
 socketio = SocketIO(app, cors_allowed_origins='*')
 connected_sids = set()  # 存放已连接的客户端
+
+def read_config(file_path='./config/setup.conf'):
+    config = configparser.ConfigParser()
+    config.read(file_path)
+
+    # 读取参数
+    section = 'settings'
+    config_dict = {key: config.get(section, key) for key in config.options(section)}
+    return config_dict
+
 
 
 class LogHandler(FileSystemEventHandler):
@@ -20,18 +32,20 @@ class LogHandler(FileSystemEventHandler):
         self.new_log_lines = []
         self.last_line = 0
         self.lock = threading.Lock()
+
     # def on_any_event(self, event):
     #     print(f'Event type: {event.event_type}  Path: {event.src_path}')
     def on_modified(self, event):
         if event.is_directory:
             return
-        #print(f'New log line added: {event.src_path}')
+        # print(f'New log line added: {event.src_path}')
         with open(event.src_path, 'r') as f:
             lines = f.readlines()
             new_lines = lines[self.last_line:]
             with self.lock:
                 self.new_log_lines.extend([line.strip() for line in new_lines])
             self.last_line = len(lines)
+
 
 def file_observer():
     while True:
@@ -42,14 +56,24 @@ def file_observer():
                 socketio.emit('my_response', {'data': event_handler.new_log_lines})
                 event_handler.new_log_lines = []
 
+
 @app.route('/')
 def index():
+    # if 'username' in session and session['username'] == "admin":
+    #     return render_template('base.html')
+    # return redirect(url_for('login'))
     return render_template('index.html')
+
+
+@app.route('/login')
+@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+def login():
+    return render_template('login.html')
+
 
 @app.route('/testindex')
 def indexTest():
     return render_template('indexTest.html')
-
 
 
 @socketio.on('connect')
@@ -144,8 +168,18 @@ def get_rule():
         return jsonify({"error": "No ID provided", "code": "-1"}), 400
 
 
+@app.route('/update_rules', methods=['POST'])
+@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+def update_rules():
+    rule = request.get_json()
+    print(rule)
+    return jsonify({"success": f"Rule with id {rule.get('id')} updated"}), 200
+
+
 if __name__ == '__main__':
-    watched_path = "F:/webFirewall/config"
+    config = read_config()
+    watched_path = config.get("path_config_file")
+    #print(watched_path)
     event_handler = LogHandler()
     observer = Observer()
     observer.schedule(event_handler, path=watched_path, recursive=False)

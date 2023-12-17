@@ -452,7 +452,7 @@
         }
         const id = getQueryString('id');
         $.ajax({
-            url: 'http://localhost:5000/get_rule?id='+id,
+            url: '/get_rule?id='+id,
             type: "get",
             success:function(data){
                 var ipEnabled = data.data.IPEnabled === 1;
@@ -501,8 +501,20 @@
             formData.TCPEnabled = formData.TCPEnabled ? 1 : 0;
             formData.UDPEnabled = formData.UDPEnabled ? 1 : 0;
             formData.ICMPEnabled = formData.ICMPEnabled ? 1 : 0;
+            formData.Id = id;
             // Handle the form submission here
             console.log(formData); // You can access the form data using data.field
+            $.ajax({
+                url : '/update_rules',
+                type : 'post',
+                dataType : 'json',
+                contentType :"application/json",
+                data : JSON.stringify(data.field),
+                success : function (data) {
+                    console.log("success")
+                }
+            })
+
             return false; // Prevent the form from actually submitting
         });
     });
