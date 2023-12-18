@@ -21,13 +21,25 @@
     <div class="layui-card">
         <div class="layui-card-body">
             <div class="layui-form" style="margin: 20px;">
-
+                <div class="layui-form-item sub-level" id="action-dropdown-section">
+                    <label class="layui-form-label">Action</label>
+                    <div class="layui-input-inline">
+                        <select name="Action" id="action-dropdown" lay-filter="action-dropdown">
+                            <option value="">执行动作</option>
+                            <option value="0">程序错误</option>
+                            <option value="1">丢弃</option>
+                            <option value="2">通过</option>
+                            <option value="3">返回</option>
+                            <option value="4">重定向</option>
+                        </select>
+                    </div>
+                </div>
 
                 <!-- IPEnabled 开关 -->
                 <div class="layui-form-item top-level">
                     <label class="layui-form-label">IP Enabled</label>
                     <div class="layui-input-inline">
-                        <input type="checkbox" name="IpEnabled" id="ip-enabled-switch" lay-filter="ip-enabled-switch" lay-skin="switch">
+                        <input type="checkbox" name="IPEnabled" id="ip-enabled-switch" lay-filter="ip-enabled-switch" lay-skin="switch">
                     </div>
                 </div>
                 <!-- IP Source 开关 -->
@@ -37,7 +49,7 @@
                         <input type="checkbox" name="SrcIpEnabled" id="source-ip-switch" lay-filter="source-ip-switch" lay-skin="switch">
                     </div>
                     <div class="layui-input-inline">
-                        <input type="text" name="SrcIp" id="source-ip-input" placeholder="请输入源 IP 地址" autocomplete="off" class="layui-input" disabled>
+                        <input type="text" name="SrcIP" id="source-ip-input" placeholder="请输入源 IP 地址" autocomplete="off" class="layui-input" disabled>
                     </div>
                 </div>
                 <!-- IP Dest 开关 -->
@@ -47,7 +59,7 @@
                         <input type="checkbox" name="DstIpEnabled" id="destination-ip-switch" lay-filter="destination-ip-switch" lay-skin="switch">
                     </div>
                     <div class="layui-input-inline">
-                        <input type="text" name="DstIp" id="destination-ip-input" placeholder="请输入目的 IP 地址" autocomplete="off" class="layui-input" disabled>
+                        <input type="text" name="DstIP" id="destination-ip-input" placeholder="请输入目的 IP 地址" autocomplete="off" class="layui-input" disabled>
                     </div>
                 </div>
 
@@ -452,7 +464,7 @@
         }
         const id = getQueryString('id');
         $.ajax({
-            url: '/get_rule?id='+id,
+            url:'/get_rule?id='+id,
             type: "get",
             success:function(data){
                 var ipEnabled = data.data.IPEnabled === 1;
@@ -490,6 +502,9 @@
                 var typeCode = data.data.ICMPType+'_'+data.data.ICMPCode;
                 $('#icmp-type-code-dropdown').val(typeCode);
 
+                
+                $('#action-dropdown').val(data.data.Action);
+
 
                 form.render('select');
                 form.render('checkbox');
@@ -512,7 +527,11 @@
                 data : JSON.stringify(data.field),
                 success : function (data) {
                     console.log("success")
+                    if(data.code===0){
+                        layer.msg("更新成功")
+                    }else layer.msg("更新失败")
                 }
+
             })
 
             return false; // Prevent the form from actually submitting
@@ -521,6 +540,6 @@
 </script>
         </div>
     </div>
-</div>
+
 </body>
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload = () => {
+        if ('WebSocket' in window) {
+            // 创建websocket连接
+            let ws = new WebSocket('ws://127.0.0.1:3001/websocket');
+            // 成功连接的时候推送一条消息，此时服务端就可以开始推送数据了
+            ws.onopen = () => {
+                console.log('websocket success---');
+                ws.send('success');
+            }
+            ws.onmessage = (message) => {
+                let data = message.data;
+                console.log('get websocket message---', data);
+            }
+            ws.onerror = () => {
+                console.error('websocket fail');
+            }
+        } else {
+            console.error('dont support websocket');
+        };
+    };
+</script>
+
+</head>
+<body>
+  
+</body>
+</html>
