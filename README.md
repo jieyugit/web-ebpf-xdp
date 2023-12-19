@@ -29,5 +29,7 @@ Updates:
 - add watchdog to observe the changes of the log file
 
 
+### 2023/12/18
 
-
+Fix:
+- Change the key-value of the rule to the int type
