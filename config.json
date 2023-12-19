@@ -1,9 +1,11 @@
 {
   "ens33": [
     {
-      "Action": 2,
+      "Action": 1,
+      "IPEnabled": 1,
       "SrcIpEnabled": 1,
       "SrcIP": "192.168.52.1",
+      "ICMPEnabled": 1,
       "Id": 1,
       "ICMPCode": 0,
       "ICMPType": 8,
@@ -18,6 +20,37 @@
       "ICMPEnabled": 1,
       "ICMPCode": 0,
       "ICMPType": 8
+    },
+    {
+      "Action": 1,
+      "IPEnabled": 1,
+      "SrcIpEnabled": 1,
+      "SrcIP": "192.168.52.135",
+      "TCPEnabled": 1,
+      "TCPACK": 1,
+      "TCPSYN": 1,
+      "Id": 6,
+      "Enabled": 0
+    },
+    {
+      "Action": 1,
+      "IPEnabled": 1,
+      "SrcIpEnabled": 1,
+      "SrcIP": "192.168.52.135",
+      "TCPEnabled": 1,
+      "TCPACK": 1,
+      "Id": 7,
+      "Enabled": 0
+    },
+    {
+      "Action": 1,
+      "IPEnabled": 1,
+      "SrcIpEnabled": 1,
+      "SrcIP": "192.168.52.135",
+      "TCPEnabled": 1,
+      "TCPSYN": 1,
+      "Id": 8,
+      "Enabled": 1
     }
   ]
 }

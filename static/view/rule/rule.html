@@ -504,6 +504,33 @@
 
                 
                 $('#action-dropdown').val(data.data.Action);
+                
+                if(data.data.TCPURG){
+                    $("#tcp-urg-switch").prop('checked', true);
+                }
+                if(data.data.TCPACK){
+                    $("#tcp-ack-switch").prop('checked', true);
+                }
+                if(data.data.TCPPSH){
+                    $("#tcp-psh-switch").prop('checked', true);
+                }
+                if(data.data.TCPFIN){
+                    $("#tcp-fin-switch").prop('checked', true);
+                }
+                if(data.data.TCPCWR){
+                    $("#tcp-cwr-switch").prop('checked', true);
+                }
+                if(data.data.TCPRST){
+                    $("#tcp-rst-switch").prop('checked', true);
+                }
+                if(data.data.TCPECE){
+                    $("#tcp-ece-switch").prop('checked', true);
+                }
+                if(data.data.TCPSYN){
+                    $("#tcp-syn-switch").prop('checked', true);
+                }
+                
+
 
 
                 form.render('select');
