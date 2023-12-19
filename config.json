@@ -2,21 +2,11 @@
   "ens33": [
     {
       "Action": 2,
-      "IPEnabled": 1,
       "SrcIpEnabled": 1,
       "SrcIP": "192.168.52.1",
-      "TCPEnabled": 1,
-      "TCPSportEnabled": 1,
-      "TCPSport": 52,
-      "TCPDportEnabled": 1,
-      "TCPDport": 3306,
-      "UDPEnabled": 1,
-      "UDPSportEnabled": 1,
-      "UDPSport": 52,
-      "UDPDportEnabled": 1,
-      "UDPDport": 88,
-      "ICMPEnabled": 1,
       "Id": 1,
+      "ICMPCode": 0,
+      "ICMPType": 8,
       "Enabled": 0
     },
     {

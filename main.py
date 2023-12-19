@@ -182,16 +182,23 @@ def update_rules():
                 # print(type(rule["Id"]))
                 if int(rule["Id"]) == int(id):
                     #print("found")
-                    Action = int(rule["Action"])
+                    Action = int(new_rule.get("Action"))
                     Enabled =  int(rule["Enabled"])
                     rule.clear()
+                    print(rule)
                     new_rule= washData(new_rule)
                     new_rule["Id"]=int(id)
                     new_rule["Enabled"]=int(Enabled)
                     new_rule["Action"] = int(Action)
+                    print("Action = ",Action)
+                    
                     
                     
                     rule.update(new_rule)
+                    
+                    print(rule)
+                    print("========")
+                    
                     with open("config.json", 'w') as file:
                         json.dump(data, file, indent=2)
                     return jsonify({"code":0,"success": f"Rule with id {rule.get('Id')} updated"}), 200
@@ -285,12 +292,10 @@ def washData(l):
         l['ICMPType'] = int(value.split("_")[0])
     if 'TCPSport' in l:
         l['TCPSport'] = int(l['TCPSport'])
-
     if 'TCPDport' in l:
         l['TCPDport'] = int(l['TCPDport'])
     if 'UDPSport' in l:
         l['UDPSport'] = int(l['UDPSport'])
-
     if 'UDPDport' in l:
         l['UDPDport'] = int(l['UDPDport'])
     return l
