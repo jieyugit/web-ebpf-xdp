@@ -15,7 +15,7 @@
         <div class="layui-row layui-col-space10">
             <div class="layui-col-xs6 layui-col-md3">
                 <div class="layui-card top-panel">
-                    <div class="layui-card-header">今日访问</div>
+                    <div class="layui-card-header">丢包数</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
                             <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;"
@@ -48,7 +48,7 @@
             </div>
             <div class="layui-col-xs6 layui-col-md3">
                 <div class="layui-card top-panel">
-                    <div class="layui-card-header">提交次数</div>
+                    <div class="layui-card-header">通过数</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
                             <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;"
@@ -81,7 +81,7 @@
             </div>
             <div class="layui-col-xs6 layui-col-md3">
                 <div class="layui-card top-panel">
-                    <div class="layui-card-header">下载数量</div>
+                    <div class="layui-card-header">访问速率</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
                             <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;"
@@ -114,7 +114,7 @@
             </div>
             <div class="layui-col-xs6 layui-col-md3">
                 <div class="layui-card top-panel">
-                    <div class="layui-card-header">流量统计</div>
+                    <div class="layui-card-header">丢包速率</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
                             <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;"
@@ -150,7 +150,7 @@
                             <div class="layui-col layui-col-md9">
                                 <div id="echarts-records" style="min-height:400px;padding: 10px"></div>
                             </div>
-                            <div class="layui-col layui-col-md3">
+                            <!-- <div class="layui-col layui-col-md3">
                                 <div style="padding: 40px 0px 0px 50px;">
                                     <div class="layui-timeline">
                                         <div class="layui-timeline-item">
@@ -199,12 +199,12 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="layui-col-md9">
+            <!-- <div class="layui-col-md9">
                 <div class="layui-card">
                     <div class="layui-card-body">
                         <dl class="dynamic-status">
@@ -272,8 +272,8 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="layui-col layui-col-md3">
+            </div> -->
+            <!-- <div class="layui-col layui-col-md3">
                 <div class="layui-card">
                     <div class="layui-card-body"
                         style="flex-direction: column;height: 160px;display: flex; align-items: center; justify-content: center;">
@@ -303,7 +303,7 @@
                         心想你会不会笑我 " 献爱献的这样笨拙, 怎么不知避开爱里的埋伏 "
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <script>
@@ -316,21 +316,21 @@
 
             count.up("value1", {
                 time: 4000,
-                num: 440.34,
+                num: 0,
                 bit: 2,
                 regulator: 50
             })
 
             count.up("value2", {
                 time: 4000,
-                num: 236.30,
+                num: 0,
                 bit: 2,
                 regulator: 50
             })
 
             count.up("value3", {
                 time: 4000,
-                num: 634.43,
+                num: 0,
                 bit: 2,
                 regulator: 50
             })
@@ -338,7 +338,7 @@
             count.up("value4", {
                 time: 4000,
                 bit: 2,
-                num: 373.23,
+                num: 0,
                 regulator: 50
             })
 

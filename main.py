@@ -121,8 +121,8 @@ def read_yaml_data():
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def update_enabled():
     req = request.json
-    rule_id = req.get('id')
-    new_enabled = req.get('enabled')
+    rule_id = int(req.get('id'))
+    new_enabled = int(req.get('enabled'))
 
     if rule_id is None or new_enabled is None:
         return jsonify({"error": "Missing id or enabled in request"}), 400
@@ -135,8 +135,8 @@ def update_enabled():
         interface_rules = data.get("ens33", [])
 
         for rule in interface_rules:
-            if str(rule.get("Id")) == str(rule_id):
-                rule["Enabled"] = new_enabled
+            if int(rule.get("Id")) == int(rule_id):
+                rule["Enabled"] = int(new_enabled)
                 rule_found = 1
                 break  # 找到匹配的规则后，更新字段并跳出循环
     except FileNotFoundError:
@@ -173,22 +173,24 @@ def update_rules():
     new_rule = request.get_json()
     id = int(new_rule.get("Id"))
     print(id)
-    if id is not None:
+    if str(id) is not None :
         try:
             with open("config.json", 'r') as file:
                 data = json.load(file)
             for rule in data["ens33"]:
                 # print(type(id))
                 # print(type(rule["Id"]))
-                if str(rule["Id"]) == str(id):
+                if int(rule["Id"]) == int(id):
                     #print("found")
-                    Action = rule["Action"]
-                    Enabled =  rule["Enabled"]
+                    Action = int(rule["Action"])
+                    Enabled =  int(rule["Enabled"])
                     rule.clear()
-                    
-                    rule["Id"]=str(id)
-                    rule["Enabled"]=int(Enabled)
                     new_rule= washData(new_rule)
+                    new_rule["Id"]=int(id)
+                    new_rule["Enabled"]=int(Enabled)
+                    new_rule["Action"] = int(Action)
+                    
+                    
                     rule.update(new_rule)
                     with open("config.json", 'w') as file:
                         json.dump(data, file, indent=2)
@@ -244,12 +246,13 @@ def insert():
         rules = data["ens33"]
         new_rule = washData(new_rule)
         new_rule["Enabled"] = 0
-        new_rule["Id"] = max_id
+        new_rule["Id"] = int(max_id)
+        new_rule["Action"] = int(new_rule["Action"])
         max_id = max_id + 1
         rules.append(new_rule)
         with open("config.json", 'w') as file:
             json.dump(data, file, indent=2)
-        jsonify({"code":0,"msg": "success"}), 200
+        return jsonify({"code":0,"msg": "success"}), 200
             
 
     except FileNotFoundError:
@@ -274,11 +277,22 @@ def washData(l):
     keys_to_remove = [key for key, value in l.items() if value == "" or value == 0]
     for key in keys_to_remove:
         del l[key]
+    
     if "ICMPTypeCode" in l.keys():
         value = l.get("ICMPTypeCode")
         l.pop("ICMPTypeCode")
         l['ICMPCode'] = int(value.split("_")[1])
         l['ICMPType'] = int(value.split("_")[0])
+    if 'TCPSport' in l:
+        l['TCPSport'] = int(l['TCPSport'])
+
+    if 'TCPDport' in l:
+        l['TCPDport'] = int(l['TCPDport'])
+    if 'UDPSport' in l:
+        l['UDPSport'] = int(l['UDPSport'])
+
+    if 'UDPDport' in l:
+        l['UDPDport'] = int(l['UDPDport'])
     return l
         
     

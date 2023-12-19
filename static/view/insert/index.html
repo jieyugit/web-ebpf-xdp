@@ -21,10 +21,10 @@
     <div class="layui-card">
         <div class="layui-card-body">
             <div class="layui-form" style="margin: 20px;">
-                <div class="layui-form-item sub-level" id="action-dropdown-section">
+                <div class="layui-form-item top-level" id="action-dropdown-section">
                     <label class="layui-form-label">Action</label>
                     <div class="layui-input-inline">
-                        <select name="ICMPTypeCode" id="action-dropdown" lay-filter="action-dropdown">
+                        <select name="Action" id="action-dropdown" lay-filter="action-dropdown">
                             <option value="">Select Type and Code</option>
                             <option value="0">程序错误</option>
                             <option value="1">丢弃</option>
@@ -326,7 +326,7 @@
                         <button class="layui-btn" lay-submit lay-filter="form-submit">提交</button>
                     </div>
                 </div>
-                    </div>
+                </div>
             </div>
 
 
@@ -524,6 +524,9 @@
                 data : JSON.stringify(data.field),
                 success : function (data) {
                     console.log("success")
+                    if(data.code===0){
+                        layer.msg("创建成功")
+                    }else layer.msg("创建失败")
                 }
             })
 
